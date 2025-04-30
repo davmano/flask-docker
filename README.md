@@ -20,3 +20,48 @@ docker-simple-webapp/
 ├── Dockerfile
 └── README.md
 ```
+
+#  Docker Flask App Deployment with GitHub Actions
+
+[![Docker Build and Push](https://github.com/davmano/flask-docker/actions/workflows/docker-publish.yml/badge.svg)](https://github.com/davmano/flask-docker/actions)
+
+---
+
+## 🖼 Architecture Diagram
+```
++----------------------------------+
+|        Local Development         |
+|    (VSCode / Pycharm + Git)       |
++----------------------------------+
+               |
+               | (git push)
+               ↓
++----------------------------------+
+|            GitHub                |
+| Repo: docker-simple-webapp       |
+| Action: docker-publish.yml       |
++----------------------------------+
+               |
+               | (GitHub Actions CI/CD)
+               ↓
++----------------------------------+
+|         GitHub Actions           |
+| - Build Docker Image             |
+| - Login to Docker Hub (using Secrets) |
+| - Push Docker Image to Docker Hub |
++----------------------------------+
+               |
+               | (New Image Available)
+               ↓
++----------------------------------+
+|         Docker Hub               |
+| Repo: davmano/docker-simple-webapp |
++----------------------------------+
+               |
+               | (Pull for Deployments later)
+               ↓
++----------------------------------+
+|  Future: AWS ECS, Kubernetes, etc. |
++----------------------------------+
+```
+
